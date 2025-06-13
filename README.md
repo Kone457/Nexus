@@ -1,3 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shizuka-AI - Cuenta Regresiva</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0D1117;
+            color: #ffffff;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ff00ff;
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #8A2BE2;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #ff00ff; }
+            to { text-shadow: 0 0 20px #ff00ff, 0 0 30px #8A2BE2; }
+        }
+
+        #countdown {
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #ff00ff;
+        }
+
+        #message {
+            display: none;
+            font-size: 28px;
+            font-weight: bold;
+            color: #00ff00;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>✨ ¡Descubre la magia de Shizuka en WhatsApp! ✨</h1>
+
+    <p id="countdown"></p>
+    <p id="message">🚀 ¡La actualización ya está disponible! 🎉</p>
+
+    <script>
+        function countdown() {
+            const targetDate = new Date("June 23, 2025 12:00:00").getTime();
+            const now = new Date().getTime();
+            const timeLeft = targetDate - now;
+
+            if (timeLeft <= 0) {
+                document.getElementById("countdown").style.display = "none";
+                document.getElementById("message").style.display = "block";
+                return;
+            }
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        setInterval(countdown, 1000);
+    </script>
+
+</body>
+</html>
+
 # 🍁 🍁 🍁 🍁 🍁  
 <h1 align="center" style="color:#8A2BE2; animation: glow 1.5s infinite alternate;">✨ ¡Descubre la magia de Shizuka en WhatsApp! ✨</h1>
 
