@@ -235,6 +235,4 @@ Si necesitas ayuda o tienes alguna sugerencia, contáctanos en el grupo de sopor
 🔹 **Comunidad de Discord:** [Únete aquí](https://discord.gg/84qsr4v)  
 
 </details>
-<img src="https://telegra.ph/file/f75aed769492814d68016.mp4" alt="Heart on Fire" width="23" height="23" />
-
 # ✨ ✨ ✨ ✨ ✨
