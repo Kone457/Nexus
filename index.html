@@ -3,29 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Galería Zenitsu Bot</title>
+  <title>Galería de Imágenes</title>
   <style>
     * {
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
     }
     body {
       margin: 0;
       display: flex;
-      background-color: #111;
+      background-image: url('https://i.imgur.com/HfKQK9h.jpeg');
+      background-size: cover;
+      background-position: center;
       color: #fff;
     }
     .sidebar {
-      width: 200px;
-      background-color: #1f1f1f;
+      width: 220px;
+      background: rgba(0,0,0,0.85);
       padding: 20px;
       height: 100vh;
-      position: fixed;
+      transition: transform 0.3s ease;
+    }
+    .sidebar.hidden {
+      transform: translateX(-100%);
     }
     .sidebar h2 {
-      margin-top: 0;
+      color: #ffd700;
       text-align: center;
-      color: #ffc107;
     }
     .sidebar button {
       display: block;
@@ -35,47 +39,64 @@
       background-color: #222;
       color: #fff;
       border: none;
-      cursor: pointer;
       border-radius: 5px;
-      transition: background 0.3s;
+      cursor: pointer;
     }
     .sidebar button:hover {
-      background-color: #ffc107;
+      background-color: #ffd700;
       color: #000;
     }
     .main {
-      margin-left: 220px;
-      padding: 20px;
       flex-grow: 1;
+      padding: 20px;
       text-align: center;
     }
     .main img {
       max-width: 80%;
       border-radius: 10px;
-      margin-bottom: 20px;
+      box-shadow: 0 0 10px #000;
     }
-    #nextBtn {
+    #nextBtn, #toggleSidebarBtn, #iaBtn {
+      margin-top: 20px;
       padding: 10px 20px;
-      font-size: 16px;
-      background-color: #ffc107;
+      background-color: #ffd700;
       color: #000;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
     }
-    #nextBtn:hover {
-      background-color: #e0a800;
+    #toggleSidebarBtn {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
+      background-color: #111;
+      color: #fff;
+      border: 1px solid #ffd700;
+    }
+    #response {
+      background-color: rgba(0, 0, 0, 0.6);
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 5px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
   </style>
 </head>
 <body>
-  <div class="sidebar">
-    <h2>📂 Categorías</h2>
+  <button id="toggleSidebarBtn" onclick="toggleSidebar()">☰</button>
+  
+  <div class="sidebar" id="sidebar">
+    <h2>Categorías</h2>
     <button onclick="loadCategory('waifu')">Waifus</button>
     <button onclick="loadCategory('memes')">Memes</button>
-    <button onclick="loadCategory('boobs')">NSFW - Boobs</button>
-    <button onclick="loadCategory('corean')">NSFW - Coreanas</button>
-    <button onclick="loadCategory('girls')">NSFW - Chicas</button>
+    <button onclick="loadCategory('boobs')">Boobs</button>
+    <button onclick="loadCategory('corean')">Coreanas</button>
+    <button onclick="loadCategory('girls')">Chicas</button>
+    <hr style="border: 1px solid #444" />
+    <button onclick="talkToIA()">Hablar con IA</button>
   </div>
 
   <div class="main">
@@ -83,6 +104,7 @@
     <img id="image" src="" alt="" style="display:none;" />
     <br />
     <button id="nextBtn" style="display:none;" onclick="loadImage()">Siguiente</button>
+    <div id="response" style="display:none;"></div>
   </div>
 
   <script>
@@ -96,9 +118,13 @@
 
     let currentCategory = null;
 
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("hidden");
+    }
+
     function loadCategory(category) {
       currentCategory = category;
-      document.getElementById("title").textContent = `📸 Mostrando: ${category}`;
+      document.getElementById("title").textContent = `Mostrando: ${category}`;
       loadImage();
     }
 
@@ -124,8 +150,22 @@
         }
       } catch (e) {
         console.error(e);
-        document.getElementById("title").textContent = "❌ Error al cargar la imagen.";
+        document.getElementById("title").textContent = "❌ Error al cargar.";
       }
+    }
+
+    function talkToIA() {
+      const pregunta = prompt("¿Qué quieres preguntarle a la IA?");
+      if (!pregunta) return;
+
+      const response = document.getElementById("response");
+      response.style.display = "block";
+      response.textContent = "Pensando...";
+
+      // IA falsa simulada (puedes integrar Gemini real si quieres)
+      setTimeout(() => {
+        response.textContent = "IA dice: Esa es una buena pregunta. ¡Gracias por compartir!";
+      }, 1000);
     }
   </script>
 </body>
