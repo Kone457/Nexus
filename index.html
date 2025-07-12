@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galería Zenitsu Bot</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      margin: 0;
+      display: flex;
+      background-color: #111;
+      color: #fff;
+    }
+    .sidebar {
+      width: 200px;
+      background-color: #1f1f1f;
+      padding: 20px;
+      height: 100vh;
+      position: fixed;
+    }
+    .sidebar h2 {
+      margin-top: 0;
+      text-align: center;
+      color: #ffc107;
+    }
+    .sidebar button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #222;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    .sidebar button:hover {
+      background-color: #ffc107;
+      color: #000;
+    }
+    .main {
+      margin-left: 220px;
+      padding: 20px;
+      flex-grow: 1;
+      text-align: center;
+    }
+    .main img {
+      max-width: 80%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    #nextBtn {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #ffc107;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #nextBtn:hover {
+      background-color: #e0a800;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>📂 Categorías</h2>
+    <button onclick="loadCategory('waifu')">Waifus</button>
+    <button onclick="loadCategory('memes')">Memes</button>
+    <button onclick="loadCategory('boobs')">NSFW - Boobs</button>
+    <button onclick="loadCategory('corean')">NSFW - Coreanas</button>
+    <button onclick="loadCategory('girls')">NSFW - Chicas</button>
+  </div>
+
+  <div class="main">
+    <h1 id="title">Selecciona una categoría</h1>
+    <img id="image" src="" alt="" style="display:none;" />
+    <br />
+    <button id="nextBtn" style="display:none;" onclick="loadImage()">Siguiente</button>
+  </div>
+
+  <script>
+    const endpoints = {
+      waifu: "https://delirius-apiofc.vercel.app/sfw/waifu",
+      memes: "https://delirius-apiofc.vercel.app/random/meme",
+      boobs: "https://delirius-apiofc.vercel.app/nsfw/boobs",
+      corean: "https://delirius-apiofc.vercel.app/nsfw/corean",
+      girls: "https://delirius-apiofc.vercel.app/nsfw/girls"
+    };
+
+    let currentCategory = null;
+
+    function loadCategory(category) {
+      currentCategory = category;
+      document.getElementById("title").textContent = `📸 Mostrando: ${category}`;
+      loadImage();
+    }
+
+    async function loadImage() {
+      if (!currentCategory) return;
+
+      const img = document.getElementById("image");
+      const btn = document.getElementById("nextBtn");
+
+      try {
+        const res = await fetch(endpoints[currentCategory]);
+        const data = await res.json();
+        const url = data.url || data.img || data.image;
+
+        if (url) {
+          img.src = url;
+          img.style.display = "block";
+          btn.style.display = "inline-block";
+        } else {
+          img.style.display = "none";
+          btn.style.display = "none";
+          document.getElementById("title").textContent = "❌ No se pudo cargar la imagen.";
+        }
+      } catch (e) {
+        console.error(e);
+        document.getElementById("title").textContent = "❌ Error al cargar la imagen.";
+      }
+    }
+  </script>
+</body>
+</html>
