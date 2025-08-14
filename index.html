@@ -2,171 +2,56 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Galería de Imágenes</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
-    body {
-      margin: 0;
-      display: flex;
-      background-image: url('https://i.imgur.com/HfKQK9h.jpeg');
-      background-size: cover;
-      background-position: center;
-      color: #fff;
-    }
-    .sidebar {
-      width: 220px;
-      background: rgba(0,0,0,0.85);
-      padding: 20px;
-      height: 100vh;
-      transition: transform 0.3s ease;
-    }
-    .sidebar.hidden {
-      transform: translateX(-100%);
-    }
-    .sidebar h2 {
-      color: #ffd700;
-      text-align: center;
-    }
-    .sidebar button {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      background-color: #222;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .sidebar button:hover {
-      background-color: #ffd700;
-      color: #000;
-    }
-    .main {
-      flex-grow: 1;
-      padding: 20px;
-      text-align: center;
-    }
-    .main img {
-      max-width: 80%;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #000;
-    }
-    #nextBtn, #toggleSidebarBtn, #iaBtn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #ffd700;
-      color: #000;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    #toggleSidebarBtn {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      z-index: 10;
-      background-color: #111;
-      color: #fff;
-      border: 1px solid #ffd700;
-    }
-    #response {
-      background-color: rgba(0, 0, 0, 0.6);
-      margin-top: 15px;
-      padding: 10px;
-      border-radius: 5px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zenitsu Bot ⚡</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <button id="toggleSidebarBtn" onclick="toggleSidebar()">☰</button>
-  
-  <div class="sidebar" id="sidebar">
-    <h2>Categorías</h2>
-    <button onclick="loadCategory('waifu')">Waifus</button>
-    <button onclick="loadCategory('memes')">Memes</button>
-    <button onclick="loadCategory('boobs')">Boobs</button>
-    <button onclick="loadCategory('corean')">Coreanas</button>
-    <button onclick="loadCategory('girls')">Chicas</button>
-    <hr style="border: 1px solid #444" />
-    <button onclick="talkToIA()">Hablar con IA</button>
-  </div>
+  <header>
+    <h1>⚡ Zenitsu Bot</h1>
+    <p>Moderación con rayos, atmósfera teatral y espíritu cubano.</p>
+  </header>
 
-  <div class="main">
-    <h1 id="title">Selecciona una categoría</h1>
-    <img id="image" src="" alt="" style="display:none;" />
-    <br />
-    <button id="nextBtn" style="display:none;" onclick="loadImage()">Siguiente</button>
-    <div id="response" style="display:none;"></div>
-  </div>
+  <section class="hero">
+    <img src="https://qu.ax/MvYPM.jpg" alt="Zenitsu Bot" />
+    <p class="caption">Imagen ceremonial del bot en modo despierto.</p>
+  </section>
 
-  <script>
-    const endpoints = {
-      waifu: "https://delirius-apiofc.vercel.app/sfw/waifu",
-      memes: "https://delirius-apiofc.vercel.app/random/meme",
-      boobs: "https://delirius-apiofc.vercel.app/nsfw/boobs",
-      corean: "https://delirius-apiofc.vercel.app/nsfw/corean",
-      girls: "https://delirius-apiofc.vercel.app/nsfw/girls"
-    };
+  <section class="info">
+    <h2>🧠 Características Principales</h2>
+    <ul>
+      <li>⚡ Comandos con respuesta escénica y emojis rituales</li>
+      <li>🛡️ Moderación automática con blindaje imperial</li>
+      <li>🎭 Saludos teatrales según la hora cubana</li>
+      <li>🔗 Integración con APIs visuales y plugins personalizados</li>
+      <li>📜 Logs con narrativa y validación escénica</li>
+    </ul>
+  </section>
 
-    let currentCategory = null;
+  <section class="links">
+    <h2>🔗 Enlaces de Interés</h2>
+    <ul>
+      <li><a href="https://tu-servidor.com/invite">📥 Invítalo a tu servidor</a></li>
+      <li><a href="https://tu-servidor.com/docs">📚 Documentación oficial</a></li>
+      <li><a href="https://tu-servidor.com/support">🛠️ Soporte y comunidad</a></li>
+      <li><a href="https://youtube.com/tu-canal">📺 Canal de YouTube</a></li>
+    </ul>
+  </section>
 
-    function toggleSidebar() {
-      document.getElementById("sidebar").classList.toggle("hidden");
-    }
+  <section class="updates">
+    <h2>🛠️ Novedades y Actualizaciones</h2>
+    <div class="update">
+      <h3>📅 Agosto 2025</h3>
+      <p>Se añadió el comando <code>!zenitsu despierta</code> con animación escénica y validación por hora cubana.</p>
+    </div>
+    <div class="update">
+      <h3>📅 Julio 2025</h3>
+      <p>Integración con plugin de blindaje grupal para roles imperiales.</p>
+    </div>
+  </section>
 
-    function loadCategory(category) {
-      currentCategory = category;
-      document.getElementById("title").textContent = `Mostrando: ${category}`;
-      loadImage();
-    }
-
-    async function loadImage() {
-      if (!currentCategory) return;
-
-      const img = document.getElementById("image");
-      const btn = document.getElementById("nextBtn");
-
-      try {
-        const res = await fetch(endpoints[currentCategory]);
-        const data = await res.json();
-        const url = data.url || data.img || data.image;
-
-        if (url) {
-          img.src = url;
-          img.style.display = "block";
-          btn.style.display = "inline-block";
-        } else {
-          img.style.display = "none";
-          btn.style.display = "none";
-          document.getElementById("title").textContent = "❌ No se pudo cargar la imagen.";
-        }
-      } catch (e) {
-        console.error(e);
-        document.getElementById("title").textContent = "❌ Error al cargar.";
-      }
-    }
-
-    function talkToIA() {
-      const pregunta = prompt("¿Qué quieres preguntarle a la IA?");
-      if (!pregunta) return;
-
-      const response = document.getElementById("response");
-      response.style.display = "block";
-      response.textContent = "Pensando...";
-
-      // IA falsa simulada (puedes integrar Gemini real si quieres)
-      setTimeout(() => {
-        response.textContent = "IA dice: Esa es una buena pregunta. ¡Gracias por compartir!";
-      }, 1000);
-    }
-  </script>
+  <footer>
+    <p>© 2025 Carlos — Arquitecto de Bots con alma teatral</p>
+  </footer>
 </body>
 </html>
