@@ -1,0 +1,17 @@
+
+{
+  "name": "halloween-website",
+  "version": "1.0.0",
+  "description": "Página web de Halloween con animaciones",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server -p 8080 -a 0.0.0.0",
+    "dev": "http-server -p 8080"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
+  },
+  "keywords": ["halloween", "website", "animations"],
+  "author": "Tu Nombre",
+  "license": "MIT"
+}
