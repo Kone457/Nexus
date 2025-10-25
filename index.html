@@ -1,153 +1,567 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Senku-Bot 🧪</title>
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    /* Estilos básicos para demo */
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f0f4f8;
-      color: #333;
-      line-height: 1.6;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Terrorífico Halloween! 🎃</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    header {
-      background-color: #0a9396;
-      color: white;
-      text-align: center;
-      padding: 2rem 1rem;
-    }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #000000, #2d0015, #000000);
+            background-size: 400% 400%;
+            animation: horrorBG 10s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #ff6b08;
+        }
 
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
+        @keyframes horrorBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-    header p {
-      font-size: 1.2rem;
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
 
-    .hero {
-      text-align: center;
-      margin: 2rem 0;
-    }
+        /* Header espeluznante */
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            position: relative;
+        }
 
-    .hero img {
-      width: 250px;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
+        .title {
+            font-size: 4rem;
+            color: #ff6b08;
+            text-shadow: 
+                0 0 10px #ff0000,
+                0 0 20px #ff0000,
+                0 0 30px #ff0000;
+            animation: flicker 3s infinite alternate, float 4s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
 
-    .caption {
-      margin-top: 0.5rem;
-      font-style: italic;
-      color: #555;
-    }
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                text-shadow: 
+                    0 0 10px #ff6b08,
+                    0 0 20px #ff6b08,
+                    0 0 30px #ff0000;
+            }
+            20%, 24%, 55% {
+                text-shadow: none;
+            }
+        }
 
-    section {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(-1deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
 
-    h2 {
-      color: #005f73;
-      margin-bottom: 1rem;
-      font-size: 1.8rem;
-    }
+        /* Fantasmas voladores */
+        .ghosts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
 
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
+        .ghost {
+            position: absolute;
+            font-size: 2rem;
+            animation: ghostFloat 15s infinite linear;
+            opacity: 0.7;
+        }
 
-    li {
-      background: #e0f2f1;
-      margin-bottom: 0.8rem;
-      padding: 0.8rem 1rem;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      font-size: 1.1rem;
-    }
+        @keyframes ghostFloat {
+            0% { 
+                transform: translateX(-100px) translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { 
+                transform: translateX(100vw) translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
 
-    li::before {
-      content: "🔬";
-      margin-right: 0.5rem;
-    }
+        /* Tarjetas de terror */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
 
-    a {
-      color: #0a9396;
-      text-decoration: none;
-      font-weight: bold;
-    }
+        .card {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #ff6b08;
+            border-radius: 15px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: cardEntrance 1s ease-out;
+            animation-fill-mode: both;
+        }
 
-    a:hover {
-      text-decoration: underline;
-    }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff6b08, #ff0000, #ff6b08);
+            z-index: -1;
+            animation: borderGlow 2s linear infinite;
+            border-radius: 17px;
+        }
 
-    .update {
-      background: #ffe066;
-      padding: 1rem;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-    }
+        @keyframes borderGlow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
 
-    footer {
-      background: #001219;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-    }
-  </style>
+        .card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 107, 8, 0.4);
+        }
+
+        @keyframes cardEntrance {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.3s; }
+        .card:nth-child(3) { animation-delay: 0.5s; }
+        .card:nth-child(4) { animation-delay: 0.7s; }
+
+        .card h3 {
+            color: #ff6b08;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 107, 8, 0.5);
+        }
+
+        .card p {
+            color: #ffa364;
+            line-height: 1.6;
+        }
+
+        /* Botones terroríficos */
+        .btn {
+            background: linear-gradient(45deg, #ff6b08, #ff0000);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            color: black;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: btnPulse 2s infinite;
+            margin: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        @keyframes btnPulse {
+            0% { 
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 107, 8, 0.7);
+            }
+            70% { 
+                transform: scale(1.05);
+                box-shadow: 0 0 0 15px rgba(255, 107, 8, 0);
+            }
+            100% { 
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 107, 8, 0);
+            }
+        }
+
+        /* Calabazas animadas */
+        .pumpkins {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .pumpkin {
+            font-size: 4rem;
+            animation: pumpkinBounce 2s ease-in-out infinite;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .pumpkin:hover {
+            animation: pumpkinShake 0.5s ease-in-out infinite;
+        }
+
+        @keyframes pumpkinBounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        @keyframes pumpkinShake {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        /* Efecto de telaraña */
+        .spider-web {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.1;
+            background: 
+                radial-gradient(circle at 20% 20%, transparent 50%, rgba(255,255,255,0.1) 100%),
+                linear-gradient(45deg, transparent 49%, rgba(255,255,255,0.1) 50%, transparent 51%),
+                linear-gradient(-45deg, transparent 49%, rgba(255,255,255,0.1) 50%, transparent 51%);
+        }
+
+        /* Araña animada */
+        .spider {
+            position: fixed;
+            top: -50px;
+            animation: spiderDrop 10s infinite;
+            font-size: 2rem;
+            z-index: 1000;
+        }
+
+        @keyframes spiderDrop {
+            0% { transform: translateY(-100px) rotate(0deg); }
+            10% { transform: translateY(50vh) rotate(180deg); }
+            20% { transform: translateY(50vh) translateX(100px) rotate(360deg); }
+            30% { transform: translateY(30vh) translateX(200px) rotate(540deg); }
+            100% { transform: translateY(100vh) translateX(500px) rotate(1080deg); }
+        }
+
+        /* Efecto de sangre */
+        .blood-drip {
+            position: fixed;
+            top: 0;
+            width: 2px;
+            height: 100vh;
+            background: linear-gradient(to bottom, transparent, #ff0000, transparent);
+            animation: bloodDrip 8s infinite;
+            z-index: 0;
+        }
+
+        @keyframes bloodDrip {
+            0% { transform: translateY(-100vh); opacity: 0; }
+            50% { opacity: 0.7; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        /* Modo de susto */
+        .jump-scare {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            animation: scare 0.5s ease-out;
+        }
+
+        @keyframes scare {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>🧪 Senku-Bot</h1>
-    <p>Tu asistente científico siempre listo para experimentar y ayudarte.</p>
-  </header>
+    <div class="spider-web"></div>
+    <div class="ghosts" id="ghosts"></div>
+    <div class="blood-drip" style="left: 20%; animation-delay: 0s;"></div>
+    <div class="blood-drip" style="left: 50%; animation-delay: 2s;"></div>
+    <div class="blood-drip" style="left: 80%; animation-delay: 4s;"></div>
+    <div class="spider">🕷️</div>
 
-  <section class="hero">
-    <img src="https://qu.ax/oFnvm.jpg" alt="Senku-Bot" />
-    <p class="caption">¡Explora la ciencia con Senku-Bot!</p>
-  </section>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">🎃 HAPPY HALLOWEEN 👻</h1>
+            <div style="font-size: 3rem; animation: skullFloat 3s ease-in-out infinite;">💀</div>
+            <p style="color: #ffa364; font-size: 1.5rem; animation: flicker 2s infinite alternate;">
+                ¡El terror te espera...!
+            </p>
+        </div>
 
-  <section class="info">
-    <h2>🧠 Características Principales</h2>
-    <ul>
-      <li>Respuestas inteligentes con un toque científico</li>
-      <li>Moderación automática para mantener todo seguro</li>
-      <li>Saludos automáticos según la hora del día</li>
-      <li>Integración con APIs visuales y comandos personalizados</li>
-      <li>Logs detallados para un seguimiento preciso</li>
-    </ul>
-  </section>
+        <div class="pumpkins">
+            <div class="pumpkin" onclick="lanzarHechizo()">🎃</div>
+            <div class="pumpkin" onclick="activarNeblina()">👻</div>
+            <div class="pumpkin" onclick="crearMurcielagos()">🦇</div>
+            <div class="pumpkin" onclick="jumpScare()">💀</div>
+        </div>
 
-  <section class="links">
-    <h2>🔗 Enlaces de Interés</h2>
-    <ul>
-      <li><a href="https://chat.whatsapp.com/EycEEUbJgh08PAaolrlupc">Únete al grupo oficial</a></li>
-      <li><a href="https://whatsapp.com/channel/0029VbAVMtj2f3EFmXmrzt0v:/">Canal oficial</a></li>
-      <li><a href="https://chat.whatsapp.com/LfLVCben9ln0M2b48KPl6B?mode=ac_t">Soporte y comunidad</a></li>
-      <li><a href="https://youtube.com/tu-canal">Canal de YouTube</a></li>
-    </ul>
-  </section>
+        <div class="grid">
+            <div class="card">
+                <h3>👻 Casa Embrujada</h3>
+                <p>Donde los fantasmas bailan toda la noche y las paredes susurran secretos del más allá.</p>
+            </div>
 
-  <section class="updates">
-    <h2>🛠️ Novedades y Actualizaciones</h2>
-    <div class="update">
-      <h3>📅 Septiembre 2025</h3>
-      <p>Senku-Bot ahora es más inteligente y añade funciones científicas avanzadas.</p>
+            <div class="card">
+                <h3>🕷️ Bosque Maldito</h3>
+                <p>Árboles que se mueven solos y arañas gigantes tejen sus telarañas plateadas.</p>
+            </div>
+
+            <div class="card">
+                <h3>🔮 Hechizos y Conjuros</h3>
+                <p>Aprende magia oscura y prepara pociones que harán temblar hasta al más valiente.</p>
+            </div>
+
+            <div class="card">
+                <h3>🍫 Dulce o Truco</h3>
+                <p>Recorre el vecindario buscando los mejores dulces... ¡pero cuidado con las bromas!</p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 50px 0;">
+            <button class="btn" onclick="activarModoTerror()">😱 Activar Modo Terror</button>
+            <button class="btn" onclick="llamarAFantasmas()">👻 Llamar a los Fantasmas</button>
+            <button class="btn" onclick="detenerTodo()">🛑 Detener Pesadilla</button>
+        </div>
     </div>
-  </section>
 
-  <footer>
-    <p>© 2025 Carlos — Todos los derechos reservados</p>
-  </footer>
+    <div class="jump-scare" id="jumpScare">
+        <h1 style="color: #ff0000; font-size: 6rem; text-align: center;">BOO! 👻</h1>
+    </div>
+
+    <script>
+        // Crear fantasmas voladores
+        function crearFantasmas() {
+            const ghostsContainer = document.getElementById('ghosts');
+            const ghostEmojis = ['👻', '🕷️', '💀', '🦇', '🎃'];
+            
+            for (let i = 0; i < 8; i++) {
+                const ghost = document.createElement('div');
+                ghost.className = 'ghost';
+                ghost.innerHTML = ghostEmojis[Math.floor(Math.random() * ghostEmojis.length)];
+                ghost.style.left = Math.random() * 100 + 'vw';
+                ghost.style.animationDelay = Math.random() * 15 + 's';
+                ghost.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                ghostsContainer.appendChild(ghost);
+            }
+        }
+
+        // Efecto de susto
+        function jumpScare() {
+            const scare = document.getElementById('jumpScare');
+            scare.style.display = 'flex';
+            
+            setTimeout(() => {
+                scare.style.display = 'none';
+            }, 1000);
+        }
+
+        // Lanzar hechizo visual
+        function lanzarHechizo() {
+            const hechizo = document.createElement('div');
+            hechizo.innerHTML = '✨';
+            hechizo.style.position = 'fixed';
+            hechizo.style.fontSize = '3rem';
+            hechizo.style.left = '50%';
+            hechizo.style.top = '50%';
+            hechizo.style.transform = 'translate(-50%, -50%)';
+            hechizo.style.animation = 'hechizoExplosion 1s ease-out';
+            hechizo.style.zIndex = '1000';
+            document.body.appendChild(hechizo);
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes hechizoExplosion {
+                    0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+                    50% { transform: translate(-50%, -50%) scale(3); opacity: 0.5; }
+                    100% { transform: translate(-50%, -50%) scale(5); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+
+            setTimeout(() => {
+                hechizo.remove();
+                style.remove();
+            }, 1000);
+        }
+
+        // Crear murciélagos voladores
+        function crearMurcielagos() {
+            for (let i = 0; i < 5; i++) {
+                const bat = document.createElement('div');
+                bat.innerHTML = '🦇';
+                bat.style.position = 'fixed';
+                bat.style.fontSize = '2rem';
+                bat.style.left = '-50px';
+                bat.style.top = Math.random() * 100 + 'vh';
+                bat.style.animation = `flyBat ${Math.random() * 3 + 2}s linear`;
+                bat.style.zIndex = '100';
+                document.body.appendChild(bat);
+
+                const batStyle = document.createElement('style');
+                batStyle.textContent = `
+                    @keyframes flyBat {
+                        0% { transform: translateX(0) rotate(0deg); }
+                        100% { transform: translateX(100vw) rotate(360deg); }
+                    }
+                `;
+                document.head.appendChild(batStyle);
+
+                setTimeout(() => {
+                    bat.remove();
+                    batStyle.remove();
+                }, 3000);
+            }
+        }
+
+        // Activar modo terror máximo
+        function activarModoTerror() {
+            document.body.style.animation = 'horrorBG 2s ease infinite';
+            
+            // Efecto de parpadeo
+            const terrorInterval = setInterval(() => {
+                document.body.style.filter = Math.random() > 0.5 ? 'brightness(0.8)' : 'brightness(1.2)';
+            }, 200);
+
+            // Detener después de 10 segundos
+            setTimeout(() => {
+                clearInterval(terrorInterval);
+                document.body.style.filter = 'brightness(1)';
+            }, 10000);
+        }
+
+        // Llamar a más fantasmas
+        function llamarAFantasmas() {
+            crearFantasmas();
+            document.title = "👻 ¡LOS FANTASMAS LLEGARON! 🎃";
+        }
+
+        // Detener todas las animaciones
+        function detenerTodo() {
+            location.reload();
+        }
+
+        // Activar efecto de neblina
+        function activarNeblina() {
+            const fog = document.createElement('div');
+            fog.style.position = 'fixed';
+            fog.style.top = '0';
+            fog.style.left = '0';
+            fog.style.width = '100%';
+            fog.style.height = '100%';
+            fog.style.background = 'radial-gradient(circle, transparent 30%, rgba(0,0,0,0.8) 70%)';
+            fog.style.animation = 'fogMove 10s linear infinite';
+            fog.style.pointerEvents = 'none';
+            fog.style.zIndex = '5';
+            document.body.appendChild(fog);
+
+            const fogStyle = document.createElement('style');
+            fogStyle.textContent = `
+                @keyframes fogMove {
+                    0% { transform: scale(1); opacity: 0.3; }
+                    50% { transform: scale(1.2); opacity: 0.6; }
+                    100% { transform: scale(1); opacity: 0.3; }
+                }
+            `;
+            document.head.appendChild(fogStyle);
+
+            setTimeout(() => {
+                fog.remove();
+                fogStyle.remove();
+            }, 10000);
+        }
+
+        // Animación de calavera flotante
+        const skullStyle = document.createElement('style');
+        skullStyle.textContent = `
+            @keyframes skullFloat {
+                0%, 100% { transform: translateY(0) rotate(0deg); }
+                50% { transform: translateY(-15px) rotate(5deg); }
+            }
+        `;
+        document.head.appendChild(skullStyle);
+
+        // Inicializar
+        crearFantasmas();
+
+        // Efectos aleatorios
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                const boo = document.createElement('div');
+                boo.innerHTML = '👻';
+                boo.style.position = 'fixed';
+                boo.style.fontSize = '1rem';
+                boo.style.left = Math.random() * 100 + 'vw';
+                boo.style.top = Math.random() * 100 + 'vh';
+                boo.style.animation = 'quickFloat 1s ease-out';
+                boo.style.zIndex = '100';
+                document.body.appendChild(boo);
+
+                const quickStyle = document.createElement('style');
+                quickStyle.textContent = `
+                    @keyframes quickFloat {
+                        0% { transform: scale(0); opacity: 0; }
+                        50% { transform: scale(1.5); opacity: 1; }
+                        100% { transform: scale(0); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(quickStyle);
+
+                setTimeout(() => {
+                    boo.remove();
+                    quickStyle.remove();
+                }, 1000);
+            }
+        }, 3000);
+    </script>
 </body>
 </html>
